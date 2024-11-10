@@ -3,22 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>icp_hello_world_rust</title>
-    <base href="/" />
+    <title>GPT-2 Interaction</title>
     <link rel="icon" href="favicon.ico" />
     <link type="text/css" rel="stylesheet" href="main.css" />
   </head>
   <body>
     <main>
-      <img src="logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
+      <h1>GPT-2 Text Generation</h1>
       <form action="#">
-        <label for="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
+        <label for="name">Enter text to generate response:</label>
+        <input id="name" type="text" placeholder="Type something..." />
+        <button type="submit">Generate</button>
       </form>
       <section id="greeting"></section>
     </main>
+    <script type="module" src="src/index.js"></script>
   </body>
 </html>

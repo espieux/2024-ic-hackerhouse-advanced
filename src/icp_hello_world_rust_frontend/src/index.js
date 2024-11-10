@@ -1,19 +1,44 @@
-import { icp_hello_world_rust_backend } from "../../declarations/icp_hello_world_rust_backend";
+import { encode, decode } from "gpt-tokenizer";
+import { icp_gpt2 } from "../../declarations/icp_gpt2";
 
-document.querySelector("form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const button = e.target.querySelector("button");
+document.addEventListener("DOMContentLoaded", async () => {
+  const form = document.querySelector("form");
+  const button = form.querySelector("button");
+  const outputSection = document.getElementById("greeting");
 
-  const name = document.getElementById("name").value.toString();
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  button.setAttribute("disabled", true);
+    const inputText = document.getElementById("name").value;
+    button.setAttribute("disabled", true);
+    outputSection.innerText = "Processing...";
 
-  // Interact with foo actor, calling the greet method
-  const greeting = await icp_hello_world_rust_backend.greet(name);
+    // Tokenize input text
+    const tokenIds = encode(inputText);
 
-  button.removeAttribute("disabled");
+    try {
+      // Call the backend for inference
+      const maxTokens = 10;
+      const response = await icp_gpt2.model_inference(maxTokens, tokenIds);
+      console.log("Raw response:", response);
 
-  document.getElementById("greeting").innerText = greeting;
+      // Directly process response.ok assuming it's defined
+      const responseOk = response.Ok;
+      console.log("response.ok:", responseOk);
 
-  return false;
+      // Convert BigInt64Array to a regular array of numbers
+      const tokenArray = Array.from(responseOk, (token) => Number(token));
+      console.log("Token array:", tokenArray);
+
+      // Decode tokens back to text
+      const generatedText = decode(tokenArray);
+      console.log("Generated text:", generatedText);
+      outputSection.innerText = generatedText;
+    } catch (error) {
+      outputSection.innerText = "Error generating text";
+      console.error("Error in inference:", error);
+    }
+
+    button.removeAttribute("disabled");
+  });
 });

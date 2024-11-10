@@ -19,7 +19,9 @@
   "dependencies": {
     "@dfinity/agent": "^0.21.4",
     "@dfinity/candid": "^0.21.4",
-    "@dfinity/principal": "^0.21.4"
+    "@dfinity/principal": "^0.21.4",
+    "gpt-tokenizer": "^2.6.0",
+    "tokenizers": "^0.13.3"
   },
   "devDependencies": {
     "assert": "2.0.0",
