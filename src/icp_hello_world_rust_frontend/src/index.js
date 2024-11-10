@@ -1,4 +1,4 @@
-import { encode, decode } from "gpt-tokenizer";
+import { encode, decode } from "gpt-tokenizer/model/davinci-002";
 import { icp_gpt2 } from "../../declarations/icp_gpt2";
 
 document.addEventListener("DOMContentLoaded", async () => {
