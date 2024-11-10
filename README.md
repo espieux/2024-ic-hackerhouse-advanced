@@ -1,3 +1,7 @@
+IMPORTANT NOTE
+RUN npm install gpt-tokenizer first
+
+
 # Advanced Challenge for ICP AI HackerHouse
 
 Welcome to this tutorial that is for experienced developers looking how to deploy AI models on ICP, a decentralized cloud built on blockchain technology. Architected for being general purpose, the only limit you have is your imagination. 🙂🚀
